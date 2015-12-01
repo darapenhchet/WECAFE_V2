@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC 
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+		<!-- <property name="hbm2ddl.auto">update</property> -->
+
+		<!-- Database connection settings -->
+		<property name="connection.username">postgres</property>
+		<property name="connection.password">1234567</property>
+		<property name="connection.url">jdbc:postgresql://localhost:5432/WeCafe</property>
+		<property name="connection.driver_class">org.postgresql.Driver</property>
+
+		<!-- SQL dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<!-- <property name="packagesToScan">com.kosign.wecafe.entities</property> -->
+		<mapping class="com.kosign.wecafe.entities"/>
+		
+	</session-factory>
+
+</hibernate-configuration>
