@@ -343,10 +343,7 @@
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 
         <script type="text/javascript">
-            /* ==============================================
-            Counter Up
-            =============================================== */
-            jQuery(document).ready(function($) {
+            $(document).ready(function($) {
                 $(document).on('keypress','#quantity, #unitPrice, #costPrice, #salePrice', function(e){
 
     				if((e.keyCode == 8) || (e.keyCode == 46) || ((e.keyCode >=37) && (e.keyCode <= 40)))
@@ -373,22 +370,19 @@
     					alert("PLEASE SELECT THE IMAGE.");
     					return;
     				}
-    				//var form = new FormData(document.getElementById('frmProductAdd'));
-    				//var image = new FormData();
-    				//image.append("images", $("#image").files[0]);
     				json = {
     					"productName" : $("#productName").val(),
-    					"categoryId"  : $("#optCategory").val(),
-    					"quantity"    : 0,
-    					"unitPrice"   : 0,
-    					"costPrice"	  : 0,
-    					"salePrice"   : 0,
-    					//"images"	  : $("#image").files[0]
+    					"category"    :{
+    						"catId" : $("#optCategory").val(),
+    					},
+    					"quantity"    : 1500,
+    					"unitPrice"   : 1500,
+    					"costPrice"	  : 1500,
+    					"salePrice"   : 1500,
+    					"image"	  : $("#image").val()
     				};
-    				//console.log(form);
-    				//return;
-    				/* $.ajax({ 
-    				    url: "${pageContext.request.contextPath}/admin/product/add", 
+    				$.ajax({ 
+    				    url: "${pageContext.request.contextPath}/api/admin/products", 
     				    type: 'POST', 
     				    dataType: 'JSON', 
     				    data: JSON.stringify(json), 
@@ -399,7 +393,6 @@
     				    success: function(data) { 
     				        if(data){
     				        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.');
-    				        	location.href="${pageContext.request.contextPath}/admin/products";
     				        }else{
     				        	alert('YOU HAVE ERRORS WHEN INSERT NEW PRODUCT.');
     				        }
@@ -407,25 +400,7 @@
     				    error:function(data,status,er) { 
     				        console.log("error: "+data+" status: "+status+" er:"+er);
     				    }
-    				}); */
-    				
-    				$("#frmProductAdd").ajaxSubmit({
-    					url: "${pageContext.request.contextPath}/admin/product/add",
-    					dataType: 'JSON', 
-    					type: 'POST',
-    					success: function(data) { 
-    						console.log(data);
-     				        if(data){
-     				        	alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.');
-     				        	location.href="${pageContext.request.contextPath}/admin/products";
-     				        }else{
-     				        	alert('YOU HAVE ERRORS WHEN INSERT NEW PRODUCT.');
-     				        }
-     				    },
-     				    error:function(data,status,er) { 
-     				        console.log("error: "+data+" status: "+status+" er:"+er);
-     				    }
-    				});
+    				}); 
     				
     			});
     			
@@ -440,9 +415,6 @@
     					        	$("#images_sample").attr("src", "${pageContext.request.contextPath}/resources/images/products/"+data.IMAGE);
     					        	$("#images_sample").show();
     					        	$("#image").val(data.IMAGE);
-    					        	//alert('YOU HAVE BEEN INSERTED SUCCESSFULLY.');
-    					        }else{
-    					        	//alert('YOU HAVE ERRORS WHEN INSERT NEW PRODUCT.');
     					        }
     					    },
     					    error:function(data,status,er) { 

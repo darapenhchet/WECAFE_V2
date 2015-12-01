@@ -2,13 +2,14 @@ package com.kosign.wecafe.services;
 
 import java.util.List;
 
+import com.kosign.wecafe.entities.Pagination;
 import com.kosign.wecafe.entities.Product;
 import com.kosign.wecafe.forms.ProductForm;
 
 public interface ProductService {
-	public List<Product> getAllProducts();
-	public List<Product> getAllProductsPagination(int pageNumber, int perPage);
+	public List<Product> findAllProducts(Pagination pagination);
 	public Product findProductById(Long id);
+	public Long count();
 	public boolean addNewProduct(Product product);
 	public boolean updateProduct(ProductForm product);
 	public boolean deleteProduct(Long id);

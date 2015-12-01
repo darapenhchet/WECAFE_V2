@@ -118,7 +118,7 @@ public class SellServiceImpl implements SellService{
 			e.printStackTrace();
 			
 		}
-		return new Long(0);
+		return 0L;
 	}
 
 }
